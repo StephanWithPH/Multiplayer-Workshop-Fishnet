@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class serverTestScript : MonoBehaviour
 {
-    void Start()
-    {
+    void Start() {
         print("Hello there!");
     }
 }

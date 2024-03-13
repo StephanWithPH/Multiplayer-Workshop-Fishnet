@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serverScene1Name: TestScene1
-  clientscene1Name: TestScene2
+  clientscene1Name: ConnectScene
 --- !u!4 &389409884
 Transform:
   m_ObjectHideFlags: 0
