@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using FishNet.Object;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovementController : MonoBehaviour
+public class PlayerMovementController : NetworkBehaviour
 {
     public float moveSpeed = 7f;
     public float rotationSpeed = 100f;
@@ -20,10 +21,12 @@ public class PlayerMovementController : MonoBehaviour
     {
         rb = gameObject.GetComponent<Rigidbody>();
         collider = gameObject.GetComponent<Collider>();
+        Debug.Log("Player is gespawned");
     }
 
     private void Update()
     {
+        if (!IsOwner) return;
         var distanceToTheGround = collider.bounds.extents.y;
         isGrounded = Physics.Raycast(collider.bounds.center, Vector3.down, distanceToTheGround + 0.1f);
 
@@ -41,6 +44,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!IsOwner) return;
         MovePlayer();
     }
 

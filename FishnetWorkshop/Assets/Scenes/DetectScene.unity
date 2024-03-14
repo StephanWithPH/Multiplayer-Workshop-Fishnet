@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731713, g: 0.13414736, b: 0.12107852, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -149,8 +149,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc016f79bab0f614ea14e7a715b9c0d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serverScene1Name: TestScene1
-  clientscene1Name: ConnectScene
+  serverScene1Name: ServerScene
+  clientScene1Name: ClientConnectScene
 --- !u!4 &389409884
 Transform:
   m_ObjectHideFlags: 0
