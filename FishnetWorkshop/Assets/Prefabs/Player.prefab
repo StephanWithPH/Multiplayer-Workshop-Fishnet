@@ -557,7 +557,7 @@ MonoBehaviour:
   _networkBehaviours:
   - {fileID: -3092590093344504804}
   - {fileID: 5823276996302479245}
-  - {fileID: 0}
+  - {fileID: 8616168174816694768}
   <ParentNetworkObject>k__BackingField: {fileID: 0}
   <ChildNetworkObjects>k__BackingField: []
   SerializedTransformProperties:
@@ -631,6 +631,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 820490b01b0f31f4fae54e23593a1040, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 255
+  _componentIndexCache: 2
   _addedNetworkObject: {fileID: 9124684552014369949}
-  _networkObjectCache: {fileID: 0}
+  _networkObjectCache: {fileID: 9124684552014369949}
+  camera: {fileID: 5362714006541018897}

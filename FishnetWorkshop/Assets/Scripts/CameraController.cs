@@ -4,13 +4,14 @@ using UnityEngine;
 public class CameraController : NetworkBehaviour
 {
     // Start is called before the first frame update
+    [SerializeField] private GameObject camera;
+    
     public override void OnStartClient()
     {
         base.OnStartClient();
         if (IsOwner)
         {
-            var cameraGameObject = gameObject.GetComponentInChildren<Camera>().gameObject;
-            cameraGameObject.SetActive(true);
+            camera.SetActive(true);
         }
     }
 }
