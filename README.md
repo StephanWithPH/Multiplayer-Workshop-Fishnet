@@ -22,7 +22,7 @@ Zie [presentatie.md](./Presentatie/presentatie.md)
 
 ### Opdracht:
 1. Controleer je IP (bijvoorbeeld door [hier](https://www.ipchicken.com) te klikken)
-2. Probeer zelf te verbinden met [OPENVPN](https://openvpn.net/client/client-connect-vpn-for-windows/) aan de hand van het bestand dat te vinden is in de folder VPN met de volgende credentials:
+2. Probeer zelf te verbinden met [OPENVPN](https://openvpn.net/client/client-connect-vpn-for-windows/) aan de hand van het [bestand](./VPN/vpn-UDP4-1194-config_buro.ovpn) dat te vinden is in de folder VPN met de volgende credentials:
 ```
 User: gameguest
 
@@ -41,10 +41,6 @@ Wij hebben voor jullie een branch klaargezet waarin alles is klaar gezet voor de
 2. Zoek naar de netwerkcomponenten en bekijk hoe je deze moet instellen.
 3. Maak de player prefab een netwerkobject(vergeet het script niet).
 4. Start de game en kijk of je de klasgenoten kunt pesten!
-
-
-
-
 
 ## (30) Opdracht 3: Cheaten!
 Alle studenten mogen vanaf nu proberen om vals te spelen in het multiplayer spel. Dit kan gedaan worden door de code voor het schieten of bewegen te veranderen.
