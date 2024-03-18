@@ -348,6 +348,7 @@ GameObject:
   - component: {fileID: 1422835652}
   - component: {fileID: 1422835651}
   - component: {fileID: 1422835656}
+  - component: {fileID: 1422835657}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -467,6 +468,25 @@ MonoBehaviour:
   _offlineScene: Assets/Scenes/ClientConnectScene.unity
   _onlineScene: Assets/Scenes/ClientScene.unity
   _replaceScenes: 0
+--- !u!114 &1422835657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1422835650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fdaae44044276a49a52229c1597e33b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _updateOrder: 0
+  _timingType: 0
+  _allowTickDropping: 0
+  _maximumFrameTicks: 2
+  _tickRate: 30
+  _pingInterval: 1
+  _physicsMode: 1
 --- !u!1 &1430518557
 GameObject:
   m_ObjectHideFlags: 0
