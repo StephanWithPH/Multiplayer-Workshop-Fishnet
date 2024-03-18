@@ -22,7 +22,7 @@ In dit onderdeel zal beschreven worden hoe wij de server hebben opgezet en wat j
 
 Ervanuitgaande dat je unity project helemaal correct is ingesteld met de juiste scenes en componenten is het vrij gemakkelijk om het op een server te zetten. Je moet van unity een build maken voor een dedicated server en deze op de server zetten via een file transfer protocol(FTP), vervolgens moet je de build starten door de executable te starten.
 
-Hieronder zal ik per stap uitleggen hoe wij het precies hebben gedaan.
+Hieronder zal er per stap uitgelegd worden hoe wij het precies hebben gedaan.
 
 **Unity scenes met de juiste componenten**
 
@@ -96,3 +96,6 @@ Alle studenten mogen vanaf nu proberen om vals te spelen in het multiplayer spel
 
 ## (10) Opdracht 4: Cheating v2 + Server authoritative uitleg
 Alle studenten mogen nogmaals proberen hun ‘cheats’ uit te voeren, maar er is een nieuwe build actief die ervoor hoort te zorgen dat alle ofwel de meeste cheats niet meer werken. hierin hebben studenten maar kort de tijd om te testen wat er nu wel en niet werkt omdat wij een uitleg gaan geven over hoe de server ervoor kan zorgen dat spelers zich aan de regels houden.
+
+# common issues
+- prefab niet op server prefab niet activeerbaar
