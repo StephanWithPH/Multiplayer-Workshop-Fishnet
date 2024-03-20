@@ -43,6 +43,7 @@ public class PlayerMovementController : NetworkBehaviour
     public struct ReconcileData : IReconcileData
     {
         public Vector3 Position;
+        public Vector3 Velocity;
 
         /* Everything below this is required for
         * the interface. You do not need to implement
@@ -168,7 +169,8 @@ public class PlayerMovementController : NetworkBehaviour
             Move(default, true);
             ReconcileData rd = new ReconcileData()
             {
-                Position = transform.position
+                Position = transform.position,
+                Velocity = rb.velocity
             };
             Reconcile(rd, true);
         }
@@ -205,6 +207,7 @@ public class PlayerMovementController : NetworkBehaviour
             Debug.Log("Server positie = " + recData.Position.y );
             Debug.Log("Client positie = " + transform.position.y );
             transform.position = recData.Position;
+            rb.velocity = recData.Velocity;
         }
         else
         {
