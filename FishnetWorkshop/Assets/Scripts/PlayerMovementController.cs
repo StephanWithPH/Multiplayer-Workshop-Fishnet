@@ -129,9 +129,10 @@ public class PlayerMovementController : NetworkBehaviour
     public bool IsGrounded()
     {
         RaycastHit hit;
-        float rayLength = 1.1f; // Adjust based on your character's size
+        float rayLength = 1.01f; // Adjust based on your character's size
         if (Physics.Raycast(transform.position, Vector3.down, out hit, rayLength))
         {
+            Debug.Log("Raycast raakt IETS");
             return true;
         }
         return false;
@@ -153,12 +154,23 @@ public class PlayerMovementController : NetworkBehaviour
             base.TimeManager.OnTick -= TimeManager_OnTick;
     }
 
+    //AFTER CHANGES
     private void TimeManager_OnTick()
     {
         if (base.IsOwner)
         {
+            Reconcile(default, false);
             BuildActions(out MoveData md);
             Move(md, false);
+        }
+        if (base.IsServer)
+        {
+            Move(default, true);
+            ReconcileData rd = new ReconcileData()
+            {
+                Position = transform.position
+            };
+            Reconcile(rd, true);
         }
     }
 
@@ -176,7 +188,10 @@ public class PlayerMovementController : NetworkBehaviour
     {
         //If jumping move the character up one unit.
         if (moveData.Jump && IsGrounded())
-            rb.AddForce(transform.up * 10);
+        {
+            Debug.Log("Dit is de replicate functie die aan gaat");
+            rb.AddForce(transform.up * 1000);
+        }
     }
 
     [Reconcile]
@@ -184,6 +199,16 @@ public class PlayerMovementController : NetworkBehaviour
     {
         //Reset the client to the received position. It's okay to do this
         //even if there is no de-synchronization.
-        transform.position = recData.Position;
+        if (recData.Position != transform.position)
+        {
+            Debug.Log("Reconcile gaat af en posities komen NIET overeen!");
+            Debug.Log("Server positie = " + recData.Position.y );
+            Debug.Log("Client positie = " + transform.position.y );
+            transform.position = recData.Position;
+        }
+        else
+        {
+            Debug.Log("Reconcile gaat af en posities komen overeen!");
+        }
     }
 }
