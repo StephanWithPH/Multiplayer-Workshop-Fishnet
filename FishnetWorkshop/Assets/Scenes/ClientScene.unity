@@ -845,7 +845,7 @@ MonoBehaviour:
   <ParentNetworkObject>k__BackingField: {fileID: 0}
   <ChildNetworkObjects>k__BackingField: []
   SerializedTransformProperties:
-    Position: {x: 550.75, y: 284.75, z: 0}
+    Position: {x: 615.5, y: 316, z: 0}
     Rotation: {x: 0, y: 0, z: 0, w: 1}
     LocalScale: {x: 1, y: 1, z: 1}
   _isNetworked: 1
