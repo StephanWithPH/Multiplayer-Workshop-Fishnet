@@ -98,6 +98,7 @@ public class PlayerMovementController : NetworkBehaviour
     public void OnMove(InputValue value)
     {
         moveInput = value.Get<Vector2>();
+        print("move");
     }
 
     private void MovePlayer()
