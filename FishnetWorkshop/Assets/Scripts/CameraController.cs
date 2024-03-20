@@ -1,6 +1,4 @@
-using System;
 using FishNet.Object;
-using NUnit.Framework.Constraints;
 using UnityEngine;
 
 public class CameraController : NetworkBehaviour
@@ -12,11 +10,14 @@ public class CameraController : NetworkBehaviour
     private bool toggledGlobalCam = false;
 
     void Start() {
-        globalCam = GameObject.FindGameObjectWithTag("GlobalCamera");
+        
     }
 
     public override void OnStartClient()
     {
+        globalCam = GameObject.FindWithTag("GlobalCamera"); //GameObject.FindGameObjectsWithTag("GlobalCamera");
+        globalCam.SetActive(false);
+        
         base.OnStartClient();
         if (IsOwner)
         {
