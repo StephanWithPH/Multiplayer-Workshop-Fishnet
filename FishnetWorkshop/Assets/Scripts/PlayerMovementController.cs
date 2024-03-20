@@ -171,7 +171,7 @@ public class PlayerMovementController : NetworkBehaviour
     }
 
     [Replicate]
-    private void Move(MoveData moveData, bool asServer, Channel channel = Channel.Unreliable ,bool replaying = false)
+    private void Move(MoveData moveData, bool asServer, Channel channel = Channel.Unreliable, bool replaying = false)
     {
         //If jumping move the character up one unit.
         if (moveData.Jump && IsGrounded())
