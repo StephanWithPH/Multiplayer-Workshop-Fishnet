@@ -6,8 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class ConnectClient : MonoBehaviour
 {
+    
     public void ToClientScene()
     {
         InstanceFinder.ClientManager.StartConnection();
     }
+
+    
 }
