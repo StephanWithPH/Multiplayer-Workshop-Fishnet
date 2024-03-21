@@ -1,81 +1,144 @@
 using System.Collections;
 using System.Collections.Generic;
 using FishNet.Object;
+using FishNet.Object.Prediction;
+using FishNet.Transporting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerMovementController : NetworkBehaviour
 {
-    public float moveSpeed = 7f;
+    public float moveSpeed = 35f;
     public float rotationSpeed = 100f;
-    public float groundDrag = 5f;
     
     private Rigidbody rb;
-    private Collider collider;
-    private Vector2 moveInput;
-    private bool isGrounded;
-    private Vector3 movementDirection;
-    private Vector3 movement;
+    public Vector3 movementInput;
+    
+    private Vector3 movementVectorToAdd;
+    private Quaternion rotation;
     
     private void Start()
     {
         rb = gameObject.GetComponent<Rigidbody>();
-        collider = gameObject.GetComponent<Collider>();
         Debug.Log("Player is gespawned");
-    }
-
-    private void Update()
-    {
-        if (!IsOwner) return;
-        var distanceToTheGround = collider.bounds.extents.y;
-        isGrounded = Physics.Raycast(collider.bounds.center, Vector3.down, distanceToTheGround + 0.1f);
-
-        LimitSpeed();
-        
-        if (isGrounded)
-        {
-            rb.drag = groundDrag;
-        }
-        else
-        {
-            rb.drag = 0;
-        }
-    }
-
-    private void FixedUpdate()
-    {
-        if (!IsOwner) return;
-        MovePlayer();
     }
 
     public void OnMove(InputValue value)
     {
-        moveInput = value.Get<Vector2>();
-        print("move");
+        if (!IsOwner) return;
+        movementInput = value.Get<Vector2>();
     }
 
-    private void MovePlayer()
+    [Replicate]
+    private void MovePlayer(MoveData moveData, bool asServer, Channel channel = Channel.Unreliable, bool replaying = false)
     {
-        // change rotation
-        var rotationToAdd = moveInput.x * rotationSpeed * Time.fixedDeltaTime;
+        Debug.Log($"Player movement");
+        var rotationToAdd = moveData.Input.x * rotationSpeed * (float)TimeManager.TickDelta;
         var finalRotation = Quaternion.Euler(Vector3.up * rotationToAdd);
-        rb.MoveRotation(rb.rotation * finalRotation);
+        rotation = finalRotation * rb.rotation;
         
-        // calculate movement direction
-        movementDirection = transform.forward * moveInput.y;
+        var movementDirection = transform.forward * moveData.Input.y;
+        movementVectorToAdd = movementDirection.normalized * moveSpeed * 10f;
 
-        rb.AddForce(movementDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+        if (movementVectorToAdd != Vector3.zero)
+        {
+            rb.velocity = Vector3.zero;
+        }
+        
+        rb.MoveRotation(rotation);
+        rb.AddForce(movementVectorToAdd, ForceMode.Force);
+    }
+    
+    [Reconcile]
+    private void Reconcile(ReconcileData recData, bool asServer, Channel channel = Channel.Unreliable)
+    {
+        //Reset the client to the received position. It's okay to do this
+        //even if there is no de-synchronization.
+        Debug.Log($"Reconciling positions");
+        rb.velocity = recData.Velocity;
+        rb.rotation = recData.Rotation;
+        transform.position = recData.Position;
     }
 
-    private void LimitSpeed()
+    public override void OnStartNetwork()
     {
-        Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+        base.OnStartNetwork();
+        base.TimeManager.OnTick += TimeManager_OnTick;
+        base.TimeManager.OnPostTick += TimeManager_OnPostTick;
+    }
 
-        // limit velocity if needed
-        if(flatVel.magnitude > moveSpeed)
+    public override void OnStopNetwork()
+    {
+        base.OnStopNetwork();
+        if (base.TimeManager != null)
+            base.TimeManager.OnTick -= TimeManager_OnTick;
+
+        if (base.TimeManager != null)
+            base.TimeManager.OnPostTick -= TimeManager_OnPostTick;
+    }
+
+    private void TimeManager_OnTick()
+    {
+        if (base.IsOwner)
         {
-            Vector3 limitedVel = flatVel.normalized * moveSpeed;
-            rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
+            Reconcile(default, false);
+            BuildActions(out MoveData md);
+            MovePlayer(md, false);
+        }
+
+        if (base.IsServer)
+        {
+            MovePlayer(default, true);
         }
     }
+
+    private void TimeManager_OnPostTick()
+    {
+        if (base.IsServer)
+        {
+            ReconcileData rd = new ReconcileData()
+            {
+                Velocity = rb.velocity,
+                Rotation = rb.rotation,
+                Position = transform.position
+            };
+            Reconcile(rd, true);
+        }
+    }
+
+    private void BuildActions(out MoveData moveData)
+    {
+        moveData = default;
+        moveData.Input = movementInput;
+    }
+}
+
+public struct MoveData : IReplicateData
+{
+    public Vector3 Input;
+    
+    /* Everything below this is required for
+     * the interface. You do not need to implement
+     * Dispose, it is there if you want to clean up anything
+     * that may allocate when this structure is discarded. */
+    private uint _tick;
+    public void Dispose() { }
+    public uint GetTick() => _tick;
+    public void SetTick(uint value) => _tick = value;
+}
+
+public struct ReconcileData : IReconcileData
+{
+    public Vector3 Velocity;
+    public Quaternion Rotation;
+    public Vector3 Position;
+    
+    /* Everything below this is required for
+     * the interface. You do not need to implement
+     * Dispose, it is there if you want to clean up anything
+     * that may allocate when this structure is discarded. */
+    private uint _tick;
+    public void Dispose() { }
+    public uint GetTick() => _tick;
+    public void SetTick(uint value) => _tick = value;
 }
