@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.Networking;
 using FishNet.Object.Prediction;
 using FishNet;
+using FishNet.Managing.Timing;
 using FishNet.Transporting;
 
 
@@ -55,6 +56,8 @@ public class PlayerMovementController : NetworkBehaviour
         public void SetTick(uint value) => _tick = value;
     }
 
+    
+    
     private void Start()
     {
         rb = gameObject.GetComponent<Rigidbody>();
@@ -83,7 +86,7 @@ public class PlayerMovementController : NetworkBehaviour
         {
             return;
         }
-        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
+        if (Input.GetKeyDown(KeyCode.F11) && IsGrounded())
         {
             _jumpQueued = true;
         }
@@ -92,8 +95,7 @@ public class PlayerMovementController : NetworkBehaviour
 
     private void FixedUpdate()
     {
-        if (!IsOwner) return;
-        MovePlayer();
+        // leeg
     }
 
     public void OnMove(InputValue value)
@@ -101,19 +103,7 @@ public class PlayerMovementController : NetworkBehaviour
         moveInput = value.Get<Vector2>();
         print("move");
     }
-
-    private void MovePlayer()
-    {
-        // change rotation
-        var rotationToAdd = moveInput.x * rotationSpeed * Time.fixedDeltaTime;
-        var finalRotation = Quaternion.Euler(Vector3.up * rotationToAdd);
-        rb.MoveRotation(rb.rotation * finalRotation);
-
-        // calculate movement direction
-        movementDirection = transform.forward * moveInput.y;
-
-        rb.AddForce(movementDirection.normalized * moveSpeed * 10f, ForceMode.Force);
-    }
+    
 
     private void LimitSpeed()
     {
@@ -145,14 +135,20 @@ public class PlayerMovementController : NetworkBehaviour
     {
         base.OnStartNetwork();
         if (base.IsServer || base.IsClient)
+        {
             base.TimeManager.OnTick += TimeManager_OnTick;
+            base.TimeManager.OnPostTick += TimeManager_OnPostTick;
+        }
     }
 
     public override void OnStopNetwork()
     {
         base.OnStopNetwork();
         if (base.TimeManager != null)
+        {
             base.TimeManager.OnTick -= TimeManager_OnTick;
+            base.TimeManager.OnPostTick -= TimeManager_OnPostTick;
+        }
     }
 
     //AFTER CHANGES
@@ -160,13 +156,32 @@ public class PlayerMovementController : NetworkBehaviour
     {
         if (base.IsOwner)
         {
-            Reconcile(default, false);
+            //Reconcile(default, false);
             BuildActions(out MoveData md);
             Move(md, false);
         }
         if (base.IsServer)
         {
             Move(default, true);
+        //    ReconcileData rd = new ReconcileData()
+        //    {
+        //        Position = transform.position,
+        //        Velocity = rb.velocity
+        };
+        //    Reconcile(rd, true);
+        //}
+    }
+    
+    private void TimeManager_OnPostTick()
+    {
+        Debug.Log("OnPostTick activated x");
+        if (base.IsOwner)
+        {
+            Reconcile(default, false);
+        }
+        if (base.IsServer)
+        {
+            //Move(default, true);
             ReconcileData rd = new ReconcileData()
             {
                 Position = transform.position,
@@ -175,6 +190,7 @@ public class PlayerMovementController : NetworkBehaviour
             Reconcile(rd, true);
         }
     }
+    
 
     private void BuildActions(out MoveData moveData)
     {
@@ -188,6 +204,18 @@ public class PlayerMovementController : NetworkBehaviour
     [Replicate]
     private void Move(MoveData moveData, bool asServer, Channel channel = Channel.Unreliable, bool replaying = false)
     {
+        // change rotation
+        // MOVEMENT
+        var rotationToAdd = moveInput.x * rotationSpeed * Time.fixedDeltaTime;
+        var finalRotation = Quaternion.Euler(Vector3.up * rotationToAdd);
+        rb.MoveRotation(rb.rotation * finalRotation);
+
+        // calculate movement direction
+        movementDirection = transform.forward * moveInput.y;
+
+        rb.AddForce(movementDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+        
+        // JUMP
         //If jumping move the character up one unit.
         if (moveData.Jump && IsGrounded())
         {
