@@ -7,12 +7,16 @@ using UnityEngine.Networking;
 using FishNet.Object.Prediction;
 using FishNet;
 using FishNet.Managing.Timing;
+using FishNet.Object.Synchronizing;
 using FishNet.Transporting;
+using Unity.VisualScripting;
 
 
 public class PlayerMovementController : NetworkBehaviour
 {
-    public float moveSpeed = 7f;
+    [SyncVar]
+    public float moveSpeed = 1000f;
+    
     public float rotationSpeed = 100f;
     public float groundDrag = 5f;
 
@@ -156,7 +160,7 @@ public class PlayerMovementController : NetworkBehaviour
     {
         if (base.IsOwner)
         {
-            //Reconcile(default, false);
+            Reconcile(default, false);
             BuildActions(out MoveData md);
             Move(md, false);
         }
@@ -212,7 +216,11 @@ public class PlayerMovementController : NetworkBehaviour
         // calculate movement direction
         movementDirection = transform.forward * moveInput.y;
 
-        rb.AddForce(movementDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+        if (base.IsServer)
+        {
+            Debug.Log("Dit is de server die de MOVE in komt.");
+        }
+        rb.AddForce(movementDirection.normalized * moveSpeed, ForceMode.Force);
         
         // JUMP
         //If jumping move the character up one unit.
@@ -229,19 +237,23 @@ public class PlayerMovementController : NetworkBehaviour
         //Reset the client to the received position. It's okay to do this
         //even if there is no de-synchronization.
         float verschilServerClient = Vector3.Distance(transform.position, recData.Position);
+        float velocityVerschil = Vector3.Distance(recData.Velocity, rb.velocity);
         
+        Debug.Log("Verschil server en client " + verschilServerClient);
+        Debug.Log("Verschil server en client " + velocityVerschil);
         
-        if (recData.Position != transform.position && verschilServerClient > 0.02f)
-        {
-            Debug.Log("Reconcile gaat af en posities komen NIET overeen!");
-            Debug.Log("Server positie = " + recData.Position.y );
-            Debug.Log("Client positie = " + transform.position.y );
-            transform.position = recData.Position;
-            rb.velocity = recData.Velocity;
-        }
+            if (verschilServerClient > 0.02f)
+            {
+                transform.position = recData.Position;
+            }
+
+            if (velocityVerschil > 0.02f)
+            {
+                rb.velocity = recData.Velocity;
+            }
         else
         {
-            Debug.Log("Reconcile gaat af en posities komen overeen!");
+            //Debug.Log("Reconcile gaat af en posities komen overeen!");
         }
     }
 }
