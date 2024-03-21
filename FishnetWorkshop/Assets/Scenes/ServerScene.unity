@@ -178,7 +178,7 @@ MonoBehaviour:
   _ipv6BindAddress: 
   _port: 7770
   _maximumClients: 4095
-  _clientAddress: 10.160.0.125
+  _clientAddress: localhost
   _timeout: 15
 --- !u!114 &1395836462
 MonoBehaviour:

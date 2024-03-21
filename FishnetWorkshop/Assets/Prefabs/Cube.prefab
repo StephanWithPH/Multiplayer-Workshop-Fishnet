@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8440322750648762215}
   - component: {fileID: 104061236266911211}
   - component: {fileID: 8913202520482905185}
-  - component: {fileID: 5772379254824613676}
+  - component: {fileID: 5781632396259719714}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -106,7 +106,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5772379254824613676
+--- !u!114 &5781632396259719714
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -125,9 +125,9 @@ MonoBehaviour:
   <ParentNetworkObject>k__BackingField: {fileID: 0}
   <ChildNetworkObjects>k__BackingField: []
   SerializedTransformProperties:
-    Position: {x: 36.074627, y: 80.7, z: -57.839252}
-    Rotation: {x: 0, y: 0, z: 0, w: 1}
-    LocalScale: {x: 4, y: 4, z: 4}
+    Position: {x: 0, y: 0, z: 0}
+    Rotation: {x: 0, y: 0, z: 0, w: 0}
+    LocalScale: {x: 0, y: 0, z: 0}
   _isNetworked: 1
   _isGlobal: 0
   _initializeOrder: 0
@@ -135,6 +135,6 @@ MonoBehaviour:
   NetworkObserver: {fileID: 0}
   <PrefabId>k__BackingField: 0
   <SpawnableCollectionId>k__BackingField: 0
-  _scenePathHash: 2409819841
+  _scenePathHash: 0
   <SceneId>k__BackingField: 0
   <AssetPathHash>k__BackingField: 12899653097304502401
