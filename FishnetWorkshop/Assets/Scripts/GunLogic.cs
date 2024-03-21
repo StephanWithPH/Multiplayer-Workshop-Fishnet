@@ -8,12 +8,13 @@ public class GunLogic : NetworkBehaviour
     [SerializeField] Transform shootPoint;
     
     void OnFire() {
-        Shoot();
+        if(IsOwner){
+            Shoot();
+        }
     }
     
     [ServerRpc(RequireOwnership = false)]
     void Shoot(NetworkConnection client = null) {
-        print("Shoot her!");
         GameObject bull = Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation);
         Spawn(bull, client);
     }
