@@ -10,12 +10,16 @@ using FishNet.Managing.Timing;
 using FishNet.Object.Synchronizing;
 using FishNet.Transporting;
 using Unity.VisualScripting;
+using UnityEngine.UIElements;
 
 
 public class PlayerMovementController : NetworkBehaviour
 {
     [SyncVar]
     public float moveSpeed = 1000f;
+
+    [SyncVar]
+    private float jumpHeight = 5f;
     
     public float rotationSpeed = 100f;
     public float groundDrag = 5f;
@@ -95,13 +99,6 @@ public class PlayerMovementController : NetworkBehaviour
             _jumpQueued = true;
         }
     }
-
-
-    private void FixedUpdate()
-    {
-        // leeg
-    }
-
     public void OnMove(InputValue value)
     {
         moveInput = value.Get<Vector2>();
@@ -180,7 +177,7 @@ public class PlayerMovementController : NetworkBehaviour
     {
         if (base.IsOwner)
         {
-            Reconcile(default, false);
+            //Reconcile(default, false);
         }
         if (base.IsServer)
         {
@@ -227,7 +224,7 @@ public class PlayerMovementController : NetworkBehaviour
         if (moveData.Jump && IsGrounded())
         {
             Debug.Log("Dit is de replicate functie die aan gaat");
-            rb.AddForce(transform.up * 1000);
+            transform.position = new Vector3(transform.position.x,jumpHeight,transform.position.z);
         }
     }
 
@@ -239,21 +236,15 @@ public class PlayerMovementController : NetworkBehaviour
         float verschilServerClient = Vector3.Distance(transform.position, recData.Position);
         float velocityVerschil = Vector3.Distance(recData.Velocity, rb.velocity);
         
-        Debug.Log("Verschil server en client " + verschilServerClient);
-        Debug.Log("Verschil server en client " + velocityVerschil);
-        
-            if (verschilServerClient > 0.02f)
-            {
-                transform.position = recData.Position;
-            }
-
-            if (velocityVerschil > 0.02f)
-            {
-                rb.velocity = recData.Velocity;
-            }
-        else
+        if (verschilServerClient > 0.02f)
         {
-            //Debug.Log("Reconcile gaat af en posities komen overeen!");
+            transform.position = recData.Position;
         }
+        
+        if (velocityVerschil > 0.02f)
+        {
+            rb.velocity = recData.Velocity;
+        }
+        
     }
 }

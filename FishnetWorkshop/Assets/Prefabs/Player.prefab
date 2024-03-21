@@ -289,7 +289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66bfbdf5ca72ad3428348a8a31d41af7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 3
+  _componentIndexCache: 4
   _addedNetworkObject: {fileID: 9124684552014369949}
   _networkObjectCache: {fileID: 9124684552014369949}
   playerData: {fileID: 11400000, guid: 37f5095312af52f4e9ac630cc868e142, type: 2}
@@ -697,9 +697,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b807c5d8cfb5e244da50b2260c99f198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 255
+  _componentIndexCache: 0
   _addedNetworkObject: {fileID: 9124684552014369949}
-  _networkObjectCache: {fileID: 0}
+  _networkObjectCache: {fileID: 9124684552014369949}
   moveSpeed: 1000
   rotationSpeed: 100
   groundDrag: 5
@@ -749,6 +749,7 @@ MonoBehaviour:
   - {fileID: -3092590093344504804}
   - {fileID: 5823276996302479245}
   - {fileID: 8616168174816694768}
+  - {fileID: 0}
   - {fileID: 3033237116642749426}
   <ParentNetworkObject>k__BackingField: {fileID: 0}
   <ChildNetworkObjects>k__BackingField:
