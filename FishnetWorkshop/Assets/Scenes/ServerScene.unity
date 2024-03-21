@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 1395836461}
   - component: {fileID: 1395836460}
   - component: {fileID: 1395836466}
+  - component: {fileID: 1395836467}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -177,7 +178,7 @@ MonoBehaviour:
   _ipv6BindAddress: 
   _port: 7770
   _maximumClients: 4095
-  _clientAddress: localhost
+  _clientAddress: 10.160.0.125
   _timeout: 15
 --- !u!114 &1395836462
 MonoBehaviour:
@@ -270,6 +271,25 @@ MonoBehaviour:
     type: 3}
   _addToDefaultScene: 1
   Spawns: []
+--- !u!114 &1395836467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1395836459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fdaae44044276a49a52229c1597e33b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _updateOrder: 0
+  _timingType: 0
+  _allowTickDropping: 0
+  _maximumFrameTicks: 2
+  _tickRate: 30
+  _pingInterval: 1
+  _physicsMode: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
