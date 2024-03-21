@@ -174,7 +174,6 @@ public class PlayerMovementController : NetworkBehaviour
     
     private void TimeManager_OnPostTick()
     {
-        Debug.Log("OnPostTick activated x");
         if (base.IsOwner)
         {
             Reconcile(default, false);
@@ -229,7 +228,10 @@ public class PlayerMovementController : NetworkBehaviour
     {
         //Reset the client to the received position. It's okay to do this
         //even if there is no de-synchronization.
-        if (recData.Position != transform.position)
+        float verschilServerClient = Vector3.Distance(transform.position, recData.Position);
+        
+        
+        if (recData.Position != transform.position && verschilServerClient > 0.02f)
         {
             Debug.Log("Reconcile gaat af en posities komen NIET overeen!");
             Debug.Log("Server positie = " + recData.Position.y );
