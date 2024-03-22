@@ -11,22 +11,29 @@ public class CameraController : NetworkBehaviour
 
     public override void OnStartClient()
     {
-        globalCam = GameObject.FindWithTag("GlobalCamera"); //GameObject.FindGameObjectsWithTag("GlobalCamera");
-        globalCam.SetActive(true);
-        
         base.OnStartClient();
+
+
+
         if (IsOwner)
         {
+            globalCam = GameObject.FindWithTag("GlobalCamera"); //GameObject.FindGameObjectsWithTag("GlobalCamera");
+            globalCam.SetActive(true);
             camera.SetActive(false);
         }
     }
 
-    public void OnToggleCamera() {
-        if(IsOwner){
-            if(toggledGlobalCam){
+    public void OnToggleCamera()
+    {
+        if (IsOwner)
+        {
+            if (toggledGlobalCam)
+            {
                 camera.SetActive(true);
                 globalCam.SetActive(false);
-            } else{
+            }
+            else
+            {
                 camera.SetActive(false);
                 globalCam.SetActive(true);
             }
