@@ -267,7 +267,7 @@
                     "name": "",
                     "id": "80a7d19f-a2f1-46e6-b8f3-cd403dc1deb1",
                     "path": "<Keyboard>/#(C)",
-                    "interactions": "",
+                    "interactions": "Tap",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "ToggleCamera",
