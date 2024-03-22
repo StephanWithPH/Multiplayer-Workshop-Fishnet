@@ -54,7 +54,7 @@ public class PlayerMovementController : NetworkBehaviour
         //even if there is no de-synchronization.
         rb.velocity = recData.Velocity;
         rb.rotation = recData.Rotation;
-        transform.position = recData.Position;
+        rb.position = recData.Position;
     }
 
     public override void OnStartNetwork()
@@ -97,7 +97,7 @@ public class PlayerMovementController : NetworkBehaviour
             {
                 Velocity = rb.velocity,
                 Rotation = rb.rotation,
-                Position = transform.position
+                Position = rb.position
             };
             Reconcile(rd, true);
         }
