@@ -11,7 +11,7 @@ public class PlayerMovementController : NetworkBehaviour
     public float moveSpeed = 35f;
     public float rotationSpeed = 100f;
     
-    private Rigidbody rb;
+    public Rigidbody rb;
     public Vector3 movementInput;
     
     private Vector3 movementVectorToAdd;
@@ -19,7 +19,6 @@ public class PlayerMovementController : NetworkBehaviour
     
     private void Start()
     {
-        rb = gameObject.GetComponent<Rigidbody>();
         Debug.Log("Player is gespawned");
     }
 
@@ -32,7 +31,6 @@ public class PlayerMovementController : NetworkBehaviour
     [Replicate]
     private void MovePlayer(MoveData moveData, bool asServer, Channel channel = Channel.Unreliable, bool replaying = false)
     {
-        Debug.Log($"Player movement");
         var rotationToAdd = moveData.Input.x * rotationSpeed * (float)TimeManager.TickDelta;
         var finalRotation = Quaternion.Euler(Vector3.up * rotationToAdd);
         rotation = finalRotation * rb.rotation;
@@ -54,7 +52,6 @@ public class PlayerMovementController : NetworkBehaviour
     {
         //Reset the client to the received position. It's okay to do this
         //even if there is no de-synchronization.
-        Debug.Log($"Reconciling positions");
         rb.velocity = recData.Velocity;
         rb.rotation = recData.Rotation;
         transform.position = recData.Position;
