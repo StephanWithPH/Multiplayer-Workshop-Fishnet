@@ -37,10 +37,12 @@ Password: mTezxQXPWqc38$
 Wij hebben voor jullie een branch klaargezet waarin alles is klaar gezet voor de meest simpele versie van multiplayer binnen unity en fishnet. We hebben echter een paar belangrijke dingen niet ingesteld. Dit mogen jullie zelf gaan instellen.
 
 ### Opdracht:
-1. Checkout de "_stap1branch_" branch
-2. Zoek naar de netwerkcomponenten en bekijk hoe je deze moet instellen.
-3. Maak de player prefab een netwerkobject(vergeet het script niet).
-4. Start de game en kijk of je de klasgenoten kunt pesten!
+1. Checkout de "_stap2branch_" branch
+2. Ga naar de ClientConnectionScene en maak een leeg object aan, noem deze NetworkManager.
+3. Voeg aan dit object de NetworkManager, de ClientManager, ServerManager, TugBoat, DefaultScene en TimeManager componenten van fishnet toe.
+4. Stel alle componenten goed in!
+5. Maak de player prefab een netwerkobject door de volgende componenten toe te voegen. NetworkObject en PredictedObject(voor jouw gemak is het script al een networkbehaviour).
+6. Start de game en kijk of je de klasgenoten kunt pesten!
 
 ## (30) Opdracht 3: Cheaten!
 Alle studenten mogen vanaf nu proberen om vals te spelen in het multiplayer spel. Dit kan gedaan worden door de code voor het schieten of bewegen te veranderen.
@@ -50,4 +52,4 @@ Alle studenten mogen vanaf nu proberen om vals te spelen in het multiplayer spel
 Alle studenten mogen nogmaals proberen hun ‘cheats’ uit te voeren, maar er is een nieuwe build actief die ervoor hoort te zorgen dat alle ofwel de meeste cheats niet meer werken. hierin hebben studenten maar kort de tijd om te testen wat er nu wel en niet werkt omdat wij een uitleg gaan geven over hoe de server ervoor kan zorgen dat spelers zich aan de regels houden.
 
 # common issues
-- prefab niet op server prefab niet activeerbaar
+- Make sure that spawnable objects spawns default prefabs and not a hashobject
