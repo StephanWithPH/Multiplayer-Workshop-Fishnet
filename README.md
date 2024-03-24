@@ -40,8 +40,9 @@ Wij hebben voor jullie een branch klaargezet waarin alles is klaar gezet voor de
 1. Checkout de "_stap2branch_" branch
 2. Ga naar de ClientConnectionScene en maak een leeg object aan, noem deze NetworkManager.
 3. Voeg aan dit object de NetworkManager, de ClientManager, ServerManager, TugBoat, DefaultScene en TimeManager componenten van fishnet toe.
-3. Maak de player prefab een netwerkobject door de volgende componenten toe te voegen. NetworkObject en PredictedObject(voor jouw gemak is het script al een networkbehaviour).
-4. Start de game en kijk of je de klasgenoten kunt pesten!
+4. Stel alle componenten goed in!
+5. Maak de player prefab een netwerkobject door de volgende componenten toe te voegen. NetworkObject en PredictedObject(voor jouw gemak is het script al een networkbehaviour).
+6. Start de game en kijk of je de klasgenoten kunt pesten!
 
 ## (30) Opdracht 3: Cheaten!
 Alle studenten mogen vanaf nu proberen om vals te spelen in het multiplayer spel. Dit kan gedaan worden door de code voor het schieten of bewegen te veranderen.
