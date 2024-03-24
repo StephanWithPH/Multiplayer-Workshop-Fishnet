@@ -4,6 +4,20 @@
 In dit onderdeel zal beschreven worden hoe wij de server hebben opgezet.
 
 ## Hoe werkt de server:
+Onze build van de server wordt hier uitgelegd aan de hand van de scenes. vervolgens worden de componenten per scene uitgelegd.
+
+**DetectScene**
+Hier begint het spel en bepaalt unity of je een server of een client bent. Vervolgens stuurt unity je dan door naar de _ServerScene_ als je een server bent. Als je een client bent stuurt unity je door naar de ClientConnectScene. 
+
+**ClientConnectScene**
+Dit is een "lege" scene met daarin een knop om proberen connectie te maken met de server. Klik je op deze knop en werkt de connectie dan kom je in de Client Scene.
+
+
+**ClientScene**
+Dit is de scene waar spelers elkaar kunnen zien.
+
+**ServerScene**
+Dit is de scene waar de server in draait. Hier haalt hij de settings op hoe hij moet runnen.
 
 ## Welke stappen hebben wij ondernomen:
 
@@ -11,8 +25,7 @@ Ervanuitgaande dat je unity project helemaal correct is ingesteld met de juiste 
 
 Hieronder zal er per stap uitgelegd worden hoe wij het precies hebben gedaan.
 
-**Unity scenes met de juiste componenten**
-
+**Unity scenes met de juiste componenten*
 
 
 **Build maken**
