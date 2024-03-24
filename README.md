@@ -52,4 +52,4 @@ Alle studenten mogen vanaf nu proberen om vals te spelen in het multiplayer spel
 Alle studenten mogen nogmaals proberen hun ‘cheats’ uit te voeren, maar er is een nieuwe build actief die ervoor hoort te zorgen dat alle ofwel de meeste cheats niet meer werken. hierin hebben studenten maar kort de tijd om te testen wat er nu wel en niet werkt omdat wij een uitleg gaan geven over hoe de server ervoor kan zorgen dat spelers zich aan de regels houden.
 
 # common issues
-- prefab niet op server prefab niet activeerbaar
+- Make sure that spawnable objects spawns default prefabs and not a hashobject
