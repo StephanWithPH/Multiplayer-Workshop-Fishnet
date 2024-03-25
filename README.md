@@ -44,6 +44,7 @@ Wij hebben voor jullie een branch klaargezet waarin alles is klaar gezet voor de
    - In de tugboat component: Voeg server ip 10.160.0.125 toe
    - In de defaultscene component: Voeg als offline scene de clientconnectscene toe. En als online scene de clientscene. Zorg dat alle checkboxes in de defaultscene component zijn aangevinkt.
    - In de timemanager: Zorg dat physics mode op 'time manager' staat.
+   - In de servermanager: Zet start headless uit
 6. Voeg aan de player prefab een networktransform component toe
 7. Maak de movement script die aan de player vast zit een networkbehaviour
 8. Start de game en kijk of je de klasgenoten kunt pesten!
