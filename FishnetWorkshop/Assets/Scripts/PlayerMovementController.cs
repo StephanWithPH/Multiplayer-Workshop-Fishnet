@@ -52,9 +52,9 @@ public class PlayerMovementController : NetworkBehaviour
     {
         //Reset the client to the received position. It's okay to do this
         //even if there is no de-synchronization.
-        rb.velocity = recData.Velocity;
-        rb.rotation = recData.Rotation;
-        rb.position = recData.Position;
+        //rb.velocity = recData.Velocity;
+        //rb.rotation = recData.Rotation;
+        //rb.position = recData.Position;
     }
 
     public override void OnStartNetwork()
