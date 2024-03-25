@@ -41,9 +41,11 @@ Wij hebben voor jullie een branch klaargezet waarin alles is klaar gezet voor de
 2. Ga naar de ClientConnectionScene en maak een leeg object aan, noem deze NetworkManager.
 3. Voeg aan dit object de NetworkManager, de ClientManager, ServerManager, TugBoat, DefaultScene en TimeManager componenten van fishnet toe.
 4. Stel alle componenten goed in!
-5. Voeg aan de player prefab een networktransform component toe
-6. Maak de movement script die aan de player vast zit een networkbehaviour
-7. Start de game en kijk of je de klasgenoten kunt pesten!
+   - In de tugboat component: Voeg server ip 10.160.0.125 toe
+   - In de defaultscene component: Voeg als offline scene de clientconnectscene toe. En als online scene de clientscene.
+6. Voeg aan de player prefab een networktransform component toe
+7. Maak de movement script die aan de player vast zit een networkbehaviour
+8. Start de game en kijk of je de klasgenoten kunt pesten!
 
 ## (30) Opdracht 3: Cheaten!
 Alle studenten mogen vanaf nu proberen om vals te spelen in het multiplayer spel. Dit kan gedaan worden door de code voor het schieten of bewegen te veranderen.
