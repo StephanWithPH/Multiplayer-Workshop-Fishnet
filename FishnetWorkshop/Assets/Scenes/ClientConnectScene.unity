@@ -868,7 +868,7 @@ MonoBehaviour:
   _maximumFrameTicks: 2
   _tickRate: 30
   _pingInterval: 1
-  _physicsMode: 0
+  _physicsMode: 1
 --- !u!1 &704343928
 GameObject:
   m_ObjectHideFlags: 0
