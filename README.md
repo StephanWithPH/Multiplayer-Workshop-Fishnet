@@ -9,7 +9,6 @@ Bram van Xanten
 In deze workshop gaan we jullie verschillende aspecten van multiplayer in unity leren. Dit zullen we doen in vier onderdelen. Deze zullen hieronder uitgelegd worden.
 
 
-( nummer ) = hoeveelheid minuten per onderdeel?
 
 ## (10) Onderdeel 1: Server uitleg + Verbinding maken
 
