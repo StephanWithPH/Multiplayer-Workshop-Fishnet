@@ -13,8 +13,6 @@ public class CameraController : NetworkBehaviour
     {
         base.OnStartClient();
 
-
-
         if (IsOwner)
         {
             globalCam = GameObject.FindWithTag("GlobalCamera"); //GameObject.FindGameObjectsWithTag("GlobalCamera");
