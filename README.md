@@ -42,7 +42,7 @@ Wij hebben voor jullie een branch klaargezet waarin alles is klaar gezet voor de
 3. Voeg aan dit object de NetworkManager, de ClientManager, ServerManager, TugBoat, DefaultScene en TimeManager componenten van fishnet toe.
 4. Stel alle componenten goed in!
    - In de tugboat component: Voeg server ip 10.160.0.125 toe
-   - In de defaultscene component: Voeg als offline scene de clientconnectscene toe. En als online scene de clientscene.
+   - In de defaultscene component: Voeg als offline scene de clientconnectscene toe. En als online scene de clientscene. Zorg dat alle checkboxes in de defaultscene component zijn aangevinkt.
 6. Voeg aan de player prefab een networktransform component toe
 7. Maak de movement script die aan de player vast zit een networkbehaviour
 8. Start de game en kijk of je de klasgenoten kunt pesten!
