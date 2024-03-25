@@ -37,7 +37,7 @@ Password: mTezxQXPWqc38$
 Wij hebben voor jullie een branch klaargezet waarin alles is klaar gezet voor de meest simpele versie van multiplayer binnen unity en fishnet. We hebben echter een paar belangrijke dingen niet ingesteld. Dit mogen jullie zelf gaan instellen.
 
 ### Opdracht:
-1. Checkout de "_stap2branch_" branch
+1. Checkout de "_new_stap2_" branch
 2. Ga naar de ClientConnectionScene en maak een leeg object aan, noem deze NetworkManager.
 3. Voeg aan dit object de NetworkManager, de ClientManager, ServerManager, TugBoat, DefaultScene en TimeManager componenten van fishnet toe.
 4. Stel alle componenten goed in!
